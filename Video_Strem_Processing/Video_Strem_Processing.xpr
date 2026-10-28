@@ -47,7 +47,6 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../hls/soso/video_Inverter/solution1/impl/ip/xilinx_com_hls_AXI_inverter_1_0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../VGA_Incrust/export"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../VGA_Inverter/export"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
