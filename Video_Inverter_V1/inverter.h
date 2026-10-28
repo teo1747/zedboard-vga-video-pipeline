@@ -1,0 +1,23 @@
+#ifndef INVERTER_H
+#define INVERTER_H
+
+#include "ap_int.h"
+#include "hls_stream.h"
+#include "ap_axi_sdata.h"
+
+// ---------------------------------------------------
+// AXI4-Stream pixel type: 8-bit grayscale + sideband
+// ---------------------------------------------------
+typedef ap_axiu<8,1,1,1> AXI_PIXEL;
+typedef hls::stream<AXI_PIXEL> AXI_STREAM;
+
+// ---------------------------------------------------
+// Top-level function prototype for HLS IP
+// ---------------------------------------------------
+void AXI_inverter(
+    AXI_STREAM& s_axis_video,
+    AXI_STREAM& m_axis_video,
+    bool VidOrig_nVideoInv
+);
+
+#endif

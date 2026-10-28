@@ -4,46 +4,46 @@
 
 typedef ap_axiu<8,1,1,1> pkt_t;
 
+// Free-running: no start signal and no AXI-Lite registers, since the block
+// design has no processor to drive them. Each call passes one pixel, and
+// enable is a plain input port, for a switch or a constant.
 void Video_invert(hls::stream<pkt_t> &axis_in, hls::stream<pkt_t> &axis_out, bool enable) {
 
 #pragma HLS INTERFACE axis port=axis_in
 #pragma HLS INTERFACE axis port=axis_out
-#pragma HLS INTERFACE s_axilite port=enable bundle=CTRL
-#pragma HLS INTERFACE s_axilite port=return bundle=CTRL
+#pragma HLS INTERFACE ap_none port=enable
+#pragma HLS INTERFACE ap_ctrl_none port=return
+#pragma HLS PIPELINE II=1
 
     // Local variables for pixel processing
 
     pkt_t in_pkt, out_pkt;
 
-    while (!axis_in.empty()) {
+    axis_in.read(in_pkt);
 
-#pragma HLS PIPELINE II=1
+    // Copy side channel fields
 
-        axis_in.read(in_pkt);
+    out_pkt.keep = in_pkt.keep;
+    out_pkt.strb = in_pkt.strb;
+    out_pkt.user = in_pkt.user;
+    out_pkt.last = in_pkt.last;
+    out_pkt.id   = in_pkt.id;
+    out_pkt.dest = in_pkt.dest;
 
-        // Copy side channel fields
+    // Data processing: invert if enable, else pass through
 
-        out_pkt.user = in_pkt.user;
-        out_pkt.last = in_pkt.last;
-        out_pkt.id   = in_pkt.id;
-        out_pkt.dest = in_pkt.dest;
+    ap_uint<8> px = in_pkt.data;
 
-        // Data processing: invert if enable, else pass through
+    if (enable) {
 
-        ap_uint<8> px = in_pkt.data;
+        out_pkt.data = (ap_uint<8>)(255 - px);
 
-        if (enable) {
+    } else {
 
-            out_pkt.data = (ap_uint<8>)(255 - px);
-
-        } else {
-
-            out_pkt.data = px;
-
-        }
-
-        axis_out.write(out_pkt);
+        out_pkt.data = px;
 
     }
+
+    axis_out.write(out_pkt);
 
 }
