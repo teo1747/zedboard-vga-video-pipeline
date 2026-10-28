@@ -1,35 +1,66 @@
--- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
--- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Wed Nov 19 16:31:40 2025
--- Host        : PT-PC-E0214W running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
---               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ bd_0_hls_inst_0_stub.vhdl
--- Design      : bd_0_hls_inst_0
--- Purpose     : Stub declaration of top-level module interface
--- Device      : xc7z020clg400-1
--- --------------------------------------------------------------------------------
+-- Testbench for bit_extraction: the 4 MSBs of the pixel during active
+-- video, black during blanking. Reports each step and the number of errors.
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
-entity decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix is
-  Port ( 
-    s_axi_control_AWADDR : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    s_axi_control_AWVALID : in STD_LOGIC;
-    s_axi_control_AWREADY : out STD_LOGIC;
-    s_axi_control_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_control_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axi_control_WVALID : in STD_LOGIC;
-    s_axi_control_WREADY : out STD_LOGIC;
-    s_axi_control_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_control_BVALID : out STD_LOGIC;
-    s_axi_control_BREADY : in STD_LOGIC;
-    s_axi_control_ARADDR : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    s_axi_control_ARVALID : in STD_LOGIC;
-    s_axi_control_ARREADY : out STD_LOGIC;
-    s_axi_control_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_control_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_control_RVALID : out STD_LOGIC;
-    s_axi_control_RREADY : in STD_LOGIC;
-    ap_clk : in STD_LOGIC;
-    ap_rst_n : in STD_LO
+entity tb_bit_extraction is
+end tb_bit_extraction;
+
+architecture sim of tb_bit_extraction is
+
+  signal clk_tb          : std_logic := '0';
+  signal rst_tb          : std_logic := '1';
+  signal Din_tb          : std_logic_vector(7 downto 0) := (others => '0');
+  signal Sel_ActVideo_tb : std_logic := '0';
+  signal Dout_tb         : std_logic_vector(3 downto 0);
+  signal done            : boolean := false;
+
+  constant clk_period : time := 10 ns;
+
+begin
+
+  uut: entity work.bit_extraction
+    port map (
+      Din          => Din_tb,
+      Sel_ActVideo => Sel_ActVideo_tb,
+      Dout         => Dout_tb
+    );
+
+  clk_tb <= not clk_tb after clk_period / 2 when not done;
+
+  stim: process
+    variable errors : natural := 0;
+
+    procedure apply(din : std_logic_vector(7 downto 0); act : std_logic;
+                    want : std_logic_vector(3 downto 0)) is
+    begin
+      Din_tb          <= din;
+      Sel_ActVideo_tb <= act;
+      wait for clk_period;
+      if Dout_tb /= want then
+        report "Din = " & integer'image(to_integer(unsigned(din))) &
+               ", active video = " & std_logic'image(act) & ": wrong Dout"
+          severity error;
+        errors := errors + 1;
+      end if;
+    end procedure;
+
+  begin
+    wait for clk_period;
+    rst_tb <= '0';
+
+    apply(x"B3", '1', "1011");   -- active video: the 4 MSBs
+    apply(x"A1", '1', "1010");
+    apply(x"A1", '0', "0000");   -- blanking: black
+    apply(x"FF", '1', "1111");
+    apply(x"FF", '0', "0000");
+    apply(x"00", '1', "0000");
+    apply(x"7F", '1', "0111");
+
+    report "end of test, " & integer'image(errors) & " error(s)";
+    done <= true;
+    wait;
+  end process;
+
+end sim;
