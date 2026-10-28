@@ -50,7 +50,7 @@ architecture sim of tb_VGA_source_bd_wrapper is
 
 
   -- Clock period constant
-  constant clk_period : time := 10 ns;  -- 50 MHz
+  constant clk_period : time := 10 ns;  -- 100 MHz, the ZedBoard clock the clock wizard expects
 
 begin
 
@@ -72,9 +72,9 @@ begin
     
       
       clk <= '0';
-      wait for clk_period ;
+      wait for clk_period / 2;
       clk <= '1';
-      wait for clk_period ;
+      wait for clk_period / 2;
     
     
   end process;
