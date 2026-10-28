@@ -38,18 +38,27 @@ int main() {
 
 
 
-    pixel_inverter(s_axis_video, m_axis_video, true);
+    AXI_inverter(s_axis_video, m_axis_video, true);
 
 
     cout << "\nOutput pixels:\n";
 
     int i = 0;
+    int errors = 0;
     while (!m_axis_video.empty()) {
         AXI_PIXEL out_pix;
         m_axis_video.read(out_pix);
 
+        int y = i / WIDTH;
+        int x = i % WIDTH;
+        int want = 255 - (int)img_in[y][x];
+        cout << (int)out_pix.data << (x == WIDTH - 1 ? "\n" : " ");
+        if ((int)out_pix.data != want) errors++;
+
         i++;
     }
 
-    return 0;
+    if (i != WIDTH * HEIGHT) errors++;
+    cout << (errors ? "FAIL: " : "PASS: ") << errors << " error(s)" << endl;
+    return errors ? 1 : 0;
 }
