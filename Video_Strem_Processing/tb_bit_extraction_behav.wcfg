@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_bit_extraction_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_bit_extraction" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="127001fs"></ZoomEndTime>
+      <Cursor1Time time="53400fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="/tb_bit_extraction/clk_tb" type="logic">
+      <obj_property name="ElementShortName">clk_tb</obj_property>
+      <obj_property name="ObjectShortName">clk_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bit_extraction/rst_tb" type="logic">
+      <obj_property name="ElementShortName">rst_tb</obj_property>
+      <obj_property name="ObjectShortName">rst_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bit_extraction/Din_tb" type="array">
+      <obj_property name="ElementShortName">Din_tb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Din_tb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bit_extraction/Sel_ActVideo_tb" type="logic">
+      <obj_property name="ElementShortName">Sel_ActVideo_tb</obj_property>
+      <obj_property name="ObjectShortName">Sel_ActVideo_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bit_extraction/Dout_tb" type="array">
+      <obj_property name="ElementShortName">Dout_tb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Dout_tb[3:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,29 @@
+# Vivado generated files
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+.Xil/
+*.jou
+*.log
+*.str
+*.wdb
+**/VGA_source_bd/hw_handoff/
+**/VGA_source_bd/ipshared/
+**/VGA_source_bd/sim/
+**/VGA_source_bd/synth/
+
+# Vitis HLS generated files
+**/solution1/*
+!**/solution1/script.tcl
+!**/solution1/directives.tcl
+!**/solution1/solution1.aps
+!**/solution1/solution1.directive
+.apc/
+.settings/
+.project
+.cproject
+.vitis_hls_log_all.xml
+export.zip

@@ -1,0 +1,60 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.394118",
+   "Default View_TopLeft":"-94,-490",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 700 -defaultsOSRD
+preplace port port-id_reset_n -pg 1 -lvl 0 -x 0 -y 610 -defaultsOSRD
+preplace port port-id_hsync_out_0 -pg 1 -lvl 9 -x 2500 -y 230 -defaultsOSRD
+preplace port port-id_vsync_out_0 -pg 1 -lvl 9 -x 2500 -y 260 -defaultsOSRD
+preplace portBus B -pg 1 -lvl 9 -x 2500 -y 110 -defaultsOSRD
+preplace portBus R -pg 1 -lvl 9 -x 2500 -y 170 -defaultsOSRD
+preplace portBus G -pg 1 -lvl 9 -x 2500 -y 140 -defaultsOSRD
+preplace inst v_tc_1 -pg 1 -lvl 6 -x 1720 -y 120 -defaultsOSRD
+preplace inst bit_extraction_0 -pg 1 -lvl 8 -x 2350 -y 170 -defaultsOSRD
+preplace inst c_counter_binary_0 -pg 1 -lvl 4 -x 1020 -y 220 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 690 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 4 -x 1020 -y 680 -defaultsOSRD
+preplace inst rst_clk_wiz_0_107M -pg 1 -lvl 2 -x 390 -y 560 -defaultsOSRD
+preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 7 -x 2050 -y 290 -defaultsOSRD
+preplace inst v_tc_0 -pg 1 -lvl 3 -x 700 -y 320 -defaultsOSRD
+preplace inst v_vid_in_axi4s_0 -pg 1 -lvl 5 -x 1380 -y 370 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 4 -x 1020 -y 820 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 4 -x 1020 -y 520 -defaultsOSRD
+preplace inst xlconstant_2 -pg 1 -lvl 8 -x 2350 -y 320 -defaultsOSRD
+preplace inst Video_incrusion_0 -pg 1 -lvl 6 -x 1720 -y 360 -defaultsOSRD
+preplace netloc Net1 1 4 3 1220 570 1550 450 1890J
+preplace netloc Net2 1 4 3 1230 590 1570 260 1890J
+preplace netloc c_counter_binary_0_Q 1 4 1 1200 220n
+preplace netloc clk_wiz_0_clk_out1 1 1 6 NJ 670 NJ 670 840 580 1240 580 1560 250 NJ
+preplace netloc clk_wiz_0_clk_out2 1 1 6 200 440 560 440 840 460 1210 560 1530 270 1870J
+preplace netloc clk_wiz_0_locked 1 1 3 220 720 NJ 720 N
+preplace netloc reset_rtl_1 1 0 4 20 610 210 660 NJ 660 NJ
+preplace netloc rst_clk_wiz_0_107M_peripheral_aresetn 1 2 4 570 450 NJ 450 1190J 180 NJ
+preplace netloc sys_clock_1 1 0 1 NJ 700
+preplace netloc v_axi4s_vid_out_0_vid_active_video 1 7 1 2220 180n
+preplace netloc v_axi4s_vid_out_0_vid_data 1 7 1 2210 160n
+preplace netloc v_axi4s_vid_out_0_vid_hsync 1 7 2 NJ 240 2480J
+preplace netloc v_axi4s_vid_out_0_vid_vsync 1 7 2 NJ 260 NJ
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 5 3 1570 240 1870J 120 2200
+preplace netloc v_tc_0_active_video_out 1 3 2 830 140 1240
+preplace netloc v_tc_0_hblank_out 1 3 2 NJ 300 N
+preplace netloc v_tc_0_hsync_out 1 3 2 850 320 N
+preplace netloc v_tc_0_vblank_out 1 3 2 NJ 340 N
+preplace netloc v_tc_0_vsync_out 1 3 2 NJ 360 N
+preplace netloc xlconstant_0_dout 1 4 3 1200 600 NJ 600 1900J
+preplace netloc xlslice_0_Dout 1 8 1 2480 110n
+preplace netloc v_tc_1_vtiming_out 1 6 1 1890 110n
+preplace netloc v_vid_in_axi4s_0_vtiming_out 1 5 1 1520 60n
+preplace netloc Video_incrusion_0_axis_out 1 6 1 1880 210n
+preplace netloc v_vid_in_axi4s_0_video_out 1 5 1 1540 330n
+levelinfo -pg 1 0 110 390 700 1020 1380 1720 2050 2350 2500
+pagesize -pg 1 -db -bbox -sgen -100 0 2630 880
+"
+}
+{
+   "da_board_cnt":"3",
+   "da_clkrst_cnt":"3"
+}
